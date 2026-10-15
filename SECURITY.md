@@ -2,9 +2,10 @@
 
 ## Reporting a vulnerability
 
-Please do not open a public issue for a security problem. Contact the maintainer privately
-with a description, reproduction steps, and the affected version. Replace this paragraph
-with a real contact address or a GitHub private advisory link before publishing.
+Please do not open a public issue for a security problem. Report it privately via
+[GitHub security advisories](https://github.com/adityasm369/opc-guard/security/advisories/new)
+with a description, reproduction steps, and the affected version. You should receive a
+response within a few days.
 
 ## Scope
 

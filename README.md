@@ -103,8 +103,7 @@ and [docs/diagrams/](docs/diagrams/README.md) for how it works visually.
 - **Single process, single machine.** There is no multi-tenant isolation, and the audit log
   is a local file.
 - **Not a compliance certification.** See [docs/controls-mapping.md](docs/controls-mapping.md).
-- **No license chosen yet.** `pyproject.toml` says `UNLICENSED` as a placeholder.
 
-## Security
+## Security and license
 
-See [SECURITY.md](SECURITY.md) for how to report a vulnerability.
+See [SECURITY.md](SECURITY.md) for how to report a vulnerability. Licensed under [MIT](LICENSE).
