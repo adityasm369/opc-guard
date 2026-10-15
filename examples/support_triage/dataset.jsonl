@@ -1,0 +1,7 @@
+{"id": "order-shipped", "task": "What is the status of order 1042?", "expect": {"contains": "shipped"}}
+{"id": "order-processing", "task": "Where is order 2001?", "expect": {"contains": "processing"}}
+{"id": "order-delivered", "task": "Status of order 3003 please", "expect": {"contains": "delivered"}}
+{"id": "order-unknown", "task": "Can you check order 9999?", "expect": {"contains": "not found"}}
+{"id": "opening-hours", "task": "What are your opening hours?", "expect": {"contains": "9am"}}
+{"id": "complaint-escalates", "task": "I have a complaint, my package arrived broken", "expect": {"contains": "sorry"}}
+{"id": "no-order-number", "task": "Tell me a joke", "expect": {"contains": "order number"}}

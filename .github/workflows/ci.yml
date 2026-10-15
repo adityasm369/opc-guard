@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit and integration tests (offline, zero cost)
+        run: python -m unittest discover -s tests -t tests -v
+      - name: Eval gate on shipped example
+        run: |
+          PYTHONPATH=src python -m opc_guard eval \
+            --agent examples/support_triage/agent.py:build \
+            --dataset examples/support_triage/dataset.jsonl \
+            --manifest examples/support_triage/manifest.toml \
+            --baseline examples/support_triage/baseline.json
+      - name: Examples run end to end
+        run: |
+          python examples/support_triage/run.py
+          python examples/refund_agent/run.py
+          python examples/refund_agent/run.py --approver auto

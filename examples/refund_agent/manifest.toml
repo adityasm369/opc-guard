@@ -1,0 +1,43 @@
+# Refund agent: a write tool that is irreversible, approval-gated, and capped.
+# Shows defense in depth: the approval gate, the amount cap, and the injection guard
+# each stop a different failure. Any one of them alone would catch the attack below.
+
+[agent]
+id = "refund-agent"
+version = "0.1.0"
+description = "Looks up orders and issues refunds up to a cap, with human approval."
+
+[budget]
+max_tokens = 20000
+max_usd = 0.25
+max_steps = 6
+max_wall_seconds = 60
+
+[tiers]
+ladder = ["small", "large"]
+
+[tiers.small]
+model = "claude-haiku-5-5"
+
+[tiers.large]
+model = "claude-sonnet-5-5"
+
+[grants]
+scopes = ["orders:read", "payments:write"]
+
+[tools.lookup_order]
+requires_approval = false
+
+[tools.issue_refund]
+requires_approval = true
+
+# Policy cap: even an approved refund cannot exceed this amount.
+[tools.issue_refund.limits]
+amount = 100
+
+[approvals]
+timeout_seconds = 60
+
+[evals]
+min_pass_rate = 0.9
+max_cost_regression_pct = 25

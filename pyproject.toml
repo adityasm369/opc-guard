@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opc-guard"
+version = "0.1.0"
+description = "Policy-enforced agent runtime for a team of one: manifests, tool gateway, budgets, approvals, audit chain, eval gate."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "UNLICENSED" }  # placeholder: choose a license before publishing
+dependencies = []  # stdlib only
+
+[project.optional-dependencies]
+dev = []
+
+[project.scripts]
+opc-guard = "opc_guard.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

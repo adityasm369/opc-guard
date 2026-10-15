@@ -1,0 +1,36 @@
+# Support triage agent: answers order-status questions with one read-only tool.
+# Model IDs are real; the offline mock uses them too, so the same manifest works offline and live.
+# Prices in src/opc_guard/budget.py are PLACEHOLDERS - update before trusting cost numbers.
+
+[agent]
+id = "support-triage"
+version = "0.1.0"
+description = "Answers order-status questions; escalates complaints to a stronger tier."
+
+[budget]
+max_tokens = 20000
+max_usd = 0.25
+max_steps = 6
+max_wall_seconds = 60
+
+[tiers]
+ladder = ["small", "large"]
+
+[tiers.small]
+model = "claude-haiku-5-5"
+
+[tiers.large]
+model = "claude-sonnet-5-5"
+
+[grants]
+scopes = ["orders:read"]
+
+[tools.lookup_order]
+requires_approval = false
+
+[approvals]
+timeout_seconds = 60
+
+[evals]
+min_pass_rate = 0.8
+max_cost_regression_pct = 25
